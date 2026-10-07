@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture
+- CMS data lives in an in-memory store (src/lib/cms-store.ts, useSyncExternalStore) seeded with sample data — frontend-only demo until a backend is added.
+- Admin pages wrap themselves in AdminLayout; public blog pages use BlogShell under /blog.
