@@ -10,6 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as CommentsRouteImport } from './routes/comments'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as TagsRouteImport } from './routes/tags'
+import { Route as UsersRouteImport } from './routes/users'
 import { Route as PostsIndexRouteImport } from './routes/posts.index'
 import { Route as PostsIdRouteImport } from './routes/posts.$id'
 import { Route as PostsNewRouteImport } from './routes/posts.new'
@@ -17,6 +22,31 @@ import { Route as PostsNewRouteImport } from './routes/posts.new'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesRoute = CategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommentsRoute = CommentsRouteImport.update({
+  id: '/comments',
+  path: '/comments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TagsRoute = TagsRouteImport.update({
+  id: '/tags',
+  path: '/tags',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersRoute = UsersRouteImport.update({
+  id: '/users',
+  path: '/users',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsIndexRoute = PostsIndexRouteImport.update({
@@ -37,12 +67,22 @@ const PostsNewRoute = PostsNewRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRoute
+  '/comments': typeof CommentsRoute
+  '/media': typeof MediaRoute
+  '/tags': typeof TagsRoute
+  '/users': typeof UsersRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
   '/posts/': typeof PostsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRoute
+  '/comments': typeof CommentsRoute
+  '/media': typeof MediaRoute
+  '/tags': typeof TagsRoute
+  '/users': typeof UsersRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
   '/posts': typeof PostsIndexRoute
@@ -50,20 +90,58 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/categories': typeof CategoriesRoute
+  '/comments': typeof CommentsRoute
+  '/media': typeof MediaRoute
+  '/tags': typeof TagsRoute
+  '/users': typeof UsersRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
   '/posts/': typeof PostsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/posts/$id' | '/posts/new' | '/posts/'
+  fullPaths:
+    | '/'
+    | '/categories'
+    | '/comments'
+    | '/media'
+    | '/tags'
+    | '/users'
+    | '/posts/$id'
+    | '/posts/new'
+    | '/posts/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/posts/$id' | '/posts/new' | '/posts'
-  id: '__root__' | '/' | '/posts/$id' | '/posts/new' | '/posts/'
+  to:
+    | '/'
+    | '/categories'
+    | '/comments'
+    | '/media'
+    | '/tags'
+    | '/users'
+    | '/posts/$id'
+    | '/posts/new'
+    | '/posts'
+  id:
+    | '__root__'
+    | '/'
+    | '/categories'
+    | '/comments'
+    | '/media'
+    | '/tags'
+    | '/users'
+    | '/posts/$id'
+    | '/posts/new'
+    | '/posts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CategoriesRoute: typeof CategoriesRoute
+  CommentsRoute: typeof CommentsRoute
+  MediaRoute: typeof MediaRoute
+  TagsRoute: typeof TagsRoute
+  UsersRoute: typeof UsersRoute
   PostsIdRoute: typeof PostsIdRoute
   PostsNewRoute: typeof PostsNewRoute
   PostsIndexRoute: typeof PostsIndexRoute
@@ -76,6 +154,41 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comments': {
+      id: '/comments'
+      path: '/comments'
+      fullPath: '/comments'
+      preLoaderRoute: typeof CommentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tags': {
+      id: '/tags'
+      path: '/tags'
+      fullPath: '/tags'
+      preLoaderRoute: typeof TagsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users': {
+      id: '/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts/': {
@@ -104,6 +217,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CategoriesRoute: CategoriesRoute,
+  CommentsRoute: CommentsRoute,
+  MediaRoute: MediaRoute,
+  TagsRoute: TagsRoute,
+  UsersRoute: UsersRoute,
   PostsIdRoute: PostsIdRoute,
   PostsNewRoute: PostsNewRoute,
   PostsIndexRoute: PostsIndexRoute,
