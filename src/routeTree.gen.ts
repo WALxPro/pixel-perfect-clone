@@ -13,8 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CommentsRouteImport } from './routes/comments'
 import { Route as MediaRouteImport } from './routes/media'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TagsRouteImport } from './routes/tags'
 import { Route as UsersRouteImport } from './routes/users'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as PostsIndexRouteImport } from './routes/posts.index'
 import { Route as PostsIdRouteImport } from './routes/posts.$id'
 import { Route as PostsNewRouteImport } from './routes/posts.new'
@@ -39,6 +42,11 @@ const MediaRoute = MediaRouteImport.update({
   path: '/media',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TagsRoute = TagsRouteImport.update({
   id: '/tags',
   path: '/tags',
@@ -47,6 +55,16 @@ const TagsRoute = TagsRouteImport.update({
 const UsersRoute = UsersRouteImport.update({
   id: '/users',
   path: '/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsIndexRoute = PostsIndexRouteImport.update({
@@ -70,10 +88,13 @@ export interface FileRoutesByFullPath {
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
   '/media': typeof MediaRoute
+  '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
+  '/blog/': typeof BlogIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -81,10 +102,13 @@ export interface FileRoutesByTo {
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
   '/media': typeof MediaRoute
+  '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
+  '/blog': typeof BlogIndexRoute
   '/posts': typeof PostsIndexRoute
 }
 export interface FileRoutesById {
@@ -93,10 +117,13 @@ export interface FileRoutesById {
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
   '/media': typeof MediaRoute
+  '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/posts/$id': typeof PostsIdRoute
   '/posts/new': typeof PostsNewRoute
+  '/blog/': typeof BlogIndexRoute
   '/posts/': typeof PostsIndexRoute
 }
 export interface FileRouteTypes {
@@ -106,10 +133,13 @@ export interface FileRouteTypes {
     | '/categories'
     | '/comments'
     | '/media'
+    | '/settings'
     | '/tags'
     | '/users'
+    | '/blog/$slug'
     | '/posts/$id'
     | '/posts/new'
+    | '/blog/'
     | '/posts/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -117,10 +147,13 @@ export interface FileRouteTypes {
     | '/categories'
     | '/comments'
     | '/media'
+    | '/settings'
     | '/tags'
     | '/users'
+    | '/blog/$slug'
     | '/posts/$id'
     | '/posts/new'
+    | '/blog'
     | '/posts'
   id:
     | '__root__'
@@ -128,10 +161,13 @@ export interface FileRouteTypes {
     | '/categories'
     | '/comments'
     | '/media'
+    | '/settings'
     | '/tags'
     | '/users'
+    | '/blog/$slug'
     | '/posts/$id'
     | '/posts/new'
+    | '/blog/'
     | '/posts/'
   fileRoutesById: FileRoutesById
 }
@@ -140,10 +176,13 @@ export interface RootRouteChildren {
   CategoriesRoute: typeof CategoriesRoute
   CommentsRoute: typeof CommentsRoute
   MediaRoute: typeof MediaRoute
+  SettingsRoute: typeof SettingsRoute
   TagsRoute: typeof TagsRoute
   UsersRoute: typeof UsersRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   PostsIdRoute: typeof PostsIdRoute
   PostsNewRoute: typeof PostsNewRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   PostsIndexRoute: typeof PostsIndexRoute
 }
 
@@ -177,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MediaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tags': {
       id: '/tags'
       path: '/tags'
@@ -189,6 +235,20 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof UsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts/': {
@@ -220,10 +280,13 @@ const rootRouteChildren: RootRouteChildren = {
   CategoriesRoute: CategoriesRoute,
   CommentsRoute: CommentsRoute,
   MediaRoute: MediaRoute,
+  SettingsRoute: SettingsRoute,
   TagsRoute: TagsRoute,
   UsersRoute: UsersRoute,
+  BlogSlugRoute: BlogSlugRoute,
   PostsIdRoute: PostsIdRoute,
   PostsNewRoute: PostsNewRoute,
+  BlogIndexRoute: BlogIndexRoute,
   PostsIndexRoute: PostsIndexRoute,
 }
 export const routeTree = rootRouteImport
