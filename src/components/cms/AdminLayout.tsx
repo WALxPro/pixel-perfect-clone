@@ -94,7 +94,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
         <Link to="/settings" search={{ tab: "account" }} onClick={onNavigate} className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-sidebar-foreground hover:bg-muted">
           <UserCog className="h-[18px] w-[18px] text-muted-foreground" /> Profile settings
         </Link>
-        <button onClick={() => toast("You've been logged out (demo)")} className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-sidebar-foreground hover:bg-muted">
+        <button onClick={() => { toast("You have been logged out"); navigate({ to: "/login" }); }} className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-sidebar-foreground hover:bg-muted">
           <LogOut className="h-[18px] w-[18px] text-muted-foreground" /> Logout
         </button>
       </div>
@@ -185,7 +185,7 @@ export function AdminLayout({ children, wide }: { children: ReactNode; wide?: bo
                 <DropdownMenuItem onClick={() => navigate({ to: "/settings", search: { tab: "account" } })}>Profile settings</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate({ to: "/blog" })}>View website</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => toast("You've been logged out (demo)")}>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { toast("You have been logged out"); navigate({ to: "/login" }); }}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
