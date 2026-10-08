@@ -45,6 +45,7 @@ const nav = [
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
   const path = useRouterState({ select: (r) => r.location.pathname });
+  const navigate = useNavigate();
   const s = useCms();
   const pending = s.comments.filter((c) => c.status === "pending").length;
   const me = s.users[0];

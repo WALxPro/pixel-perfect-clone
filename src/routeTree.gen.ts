@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CommentsRouteImport } from './routes/comments'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MediaRouteImport } from './routes/media'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TagsRouteImport } from './routes/tags'
 import { Route as UsersRouteImport } from './routes/users'
@@ -37,9 +39,19 @@ const CommentsRoute = CommentsRouteImport.update({
   path: '/comments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -87,7 +99,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
+  '/login': typeof LoginRoute
   '/media': typeof MediaRoute
+  '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
@@ -101,7 +115,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
+  '/login': typeof LoginRoute
   '/media': typeof MediaRoute
+  '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
@@ -116,7 +132,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/comments': typeof CommentsRoute
+  '/login': typeof LoginRoute
   '/media': typeof MediaRoute
+  '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
   '/tags': typeof TagsRoute
   '/users': typeof UsersRoute
@@ -132,7 +150,9 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/comments'
+    | '/login'
     | '/media'
+    | '/register'
     | '/settings'
     | '/tags'
     | '/users'
@@ -146,7 +166,9 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/comments'
+    | '/login'
     | '/media'
+    | '/register'
     | '/settings'
     | '/tags'
     | '/users'
@@ -160,7 +182,9 @@ export interface FileRouteTypes {
     | '/'
     | '/categories'
     | '/comments'
+    | '/login'
     | '/media'
+    | '/register'
     | '/settings'
     | '/tags'
     | '/users'
@@ -175,7 +199,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
   CommentsRoute: typeof CommentsRoute
+  LoginRoute: typeof LoginRoute
   MediaRoute: typeof MediaRoute
+  RegisterRoute: typeof RegisterRoute
   SettingsRoute: typeof SettingsRoute
   TagsRoute: typeof TagsRoute
   UsersRoute: typeof UsersRoute
@@ -209,11 +235,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/media': {
       id: '/media'
       path: '/media'
       fullPath: '/media'
       preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -279,7 +319,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
   CommentsRoute: CommentsRoute,
+  LoginRoute: LoginRoute,
   MediaRoute: MediaRoute,
+  RegisterRoute: RegisterRoute,
   SettingsRoute: SettingsRoute,
   TagsRoute: TagsRoute,
   UsersRoute: UsersRoute,
